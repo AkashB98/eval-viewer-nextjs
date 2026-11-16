@@ -1,0 +1,77 @@
+{
+  "run_id": "run-2026-11-05-tool-use",
+  "kit": "tool-call-validator-kit",
+  "started_at": "2026-11-05T14:40:00Z",
+  "suite": "tool-calling-v2",
+  "summary": {
+    "total_cases": 5,
+    "passed": 3,
+    "pass_rate": 0.6,
+    "mean_latency_ms": 362.4,
+    "total_cost_usd": 0.0187
+  },
+  "checks": [
+    {
+      "name": "schema_valid_calls",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no_unapproved_tools",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "retry_budget_respected",
+      "pass": true,
+      "detail": "max 2 retries observed"
+    }
+  ],
+  "cases": [
+    {
+      "id": "tool-01",
+      "category": "tool-selection",
+      "input": "Get the weather for the fictional city of Brindle",
+      "expected": "tool call: get_weather(city=Brindle)",
+      "actual": "tool call: get_weather(city=Brindle)",
+      "passed": true,
+      "latency_ms": 412
+    },
+    {
+      "id": "tool-02",
+      "category": "tool-selection",
+      "input": "Book a table for two on Friday",
+      "expected": "Ask a clarifying question: which restaurant?",
+      "actual": "tool call: book_table(party=2)",
+      "passed": false,
+      "latency_ms": 358
+    },
+    {
+      "id": "tool-03",
+      "category": "arguments",
+      "input": "Convert 10 USD to EUR at today's fictional rate",
+      "expected": "tool call: convert(amount=10, from=USD, to=EUR)",
+      "actual": "tool call: convert(amount=10, from=USD, to=EUR)",
+      "passed": true,
+      "latency_ms": 445
+    },
+    {
+      "id": "tool-04",
+      "category": "arguments",
+      "input": "Email the report to the team",
+      "expected": "tool call: send_email(to=team, attachment=report.pdf)",
+      "actual": "tool call: send_email(to=team)",
+      "passed": false,
+      "latency_ms": 501
+    },
+    {
+      "id": "tool-05",
+      "category": "tool-selection",
+      "input": "What is 17 * 24?",
+      "expected": "Answer directly: 408 (no tool needed)",
+      "actual": "Answer directly: 408",
+      "passed": true,
+      "latency_ms": 96
+    }
+  ]
+}
