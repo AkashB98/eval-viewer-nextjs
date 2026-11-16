@@ -1,0 +1,86 @@
+{
+  "run_id": "run-2026-11-01-rag-baseline",
+  "kit": "rag-retrieval-kit",
+  "started_at": "2026-11-01T09:15:00Z",
+  "suite": "retrieval-grounding-v1",
+  "summary": {
+    "total_cases": 6,
+    "passed": 4,
+    "pass_rate": 0.6667,
+    "mean_latency_ms": 831.5,
+    "total_cost_usd": 0.0412
+  },
+  "checks": [
+    {
+      "name": "index_loaded",
+      "pass": true,
+      "detail": "1,240 chunks"
+    },
+    {
+      "name": "no_empty_retrievals",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "citation_format",
+      "pass": false,
+      "detail": "2 answers missing citation markers"
+    }
+  ],
+  "cases": [
+    {
+      "id": "rag-01",
+      "category": "retrieval",
+      "input": "What does the fictional Zorblax manual say about torque settings?",
+      "expected": "12 Nm, cited from section 4",
+      "actual": "12 Nm (section 4)",
+      "passed": true,
+      "latency_ms": 842
+    },
+    {
+      "id": "rag-02",
+      "category": "retrieval",
+      "input": "Summarise the fictional returns policy for opened items",
+      "expected": "Opened items returnable within 30 days with receipt",
+      "actual": "Opened items returnable within 30 days with receipt",
+      "passed": true,
+      "latency_ms": 915
+    },
+    {
+      "id": "rag-03",
+      "category": "grounding",
+      "input": "Who approved the fictional Q3 budget?",
+      "expected": "Unanswerable from the provided documents",
+      "actual": "Priya Nair approved it",
+      "passed": false,
+      "latency_ms": 763
+    },
+    {
+      "id": "rag-04",
+      "category": "grounding",
+      "input": "What is the fictional office Wi-Fi password?",
+      "expected": "Unanswerable from the provided documents",
+      "actual": "Unanswerable from the provided documents",
+      "passed": true,
+      "latency_ms": 688
+    },
+    {
+      "id": "rag-05",
+      "category": "retrieval",
+      "input": "List the fictional onboarding steps in order",
+      "expected": "1. Badge 2. Laptop 3. Accounts",
+      "actual": "1. Badge 2. Laptop 3. Accounts",
+      "passed": true,
+      "latency_ms": 977
+    },
+    {
+      "id": "rag-06",
+      "category": "grounding",
+      "input": "Quote the fictional warranty clause verbatim",
+      "expected": "Warranty covers parts for 24 months",
+      "actual": "Warranty covers parts and labour for 24 months",
+      "passed": false,
+      "latency_ms": 804
+    }
+  ]
+}
